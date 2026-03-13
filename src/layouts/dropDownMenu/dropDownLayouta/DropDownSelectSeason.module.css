@@ -1,0 +1,33 @@
+.container_sgOne, 
+.container_atlantis,
+.container_universe {
+    position: absolute;
+    top: 5dvh;
+    z-index: 10;
+    width: 100%;
+    height: 95dvh;
+    backdrop-filter: blur(4px);
+}
+
+.container_sgOne .seasons,
+.container_atlantis .seasons,
+.container_universe .seasons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+    height: fit-content;
+    background-color: rgba(0, 110, 255);
+}
+
+.container_sgOne .seasons {
+    justify-self: left;
+}
+
+.container_atlantis .seasons {
+    justify-self: center;
+}
+
+.container_universe .seasons {
+    justify-self: right;
+}

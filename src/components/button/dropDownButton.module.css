@@ -1,0 +1,30 @@
+.inactive,
+.active {
+    position: relative;
+    width: 100%;
+    background-color: black;
+    border: 3px solid blue;
+}
+
+
+.inactive::after,
+.active::after {
+    position: absolute;
+    content: "";
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+
+.inactive::after {
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
+    transition: border-left 2s, border-right 2s;
+}
+
+.active::after {
+    border-left: 15px solid blue;
+    border-right: 15px solid blue;
+    transition: border-left 2s, border-right 2s;
+}
