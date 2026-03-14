@@ -1,5 +1,5 @@
 import { DropDownSelectSeason } from './dropDownLayouta/DropDownSelectSeason'
-import { DropDownButton } from '@/components/button/dropDownButton'
+import { DropDownButton } from '../../components/button/dropDownButton'
 import styles from './dropDownMenu.module.css'
 
 import { useState } from 'react'

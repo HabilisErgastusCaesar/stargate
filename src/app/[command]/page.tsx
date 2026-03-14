@@ -4,10 +4,10 @@ import Image from "next/image";
 import styles from "./../page.module.css";
 import { useEffect, useState } from "react";
 
-import { DropDownMenu } from "@/layouts/dropDownMenu/dropDownMenu";
-import { SearchFilter } from "@/layouts/searchFilter/searchFilter";
-import { StargateSmallerLayoutContainer } from "@/layouts/stargateSmallerLayoutContainer";
-import { StargateBiggerLayoutContainer } from "@/layouts/stargateBiggerLayoutContainer";
+import { DropDownMenu } from "../../../layouts/dropDownMenu/dropDownMenu";
+import { SearchFilter } from "../../../layouts/searchFilter/searchFilter";
+import { StargateSmallerLayoutContainer } from "../../../layouts/stargateSmallerLayoutContainer";
+import { StargateBiggerLayoutContainer } from "../../../layouts/stargateBiggerLayoutContainer";
 
 export default function Home() {
   const [ windowSize, setWindowSize ] = useState({

@@ -1,7 +1,7 @@
 import styles from './searchFilter.module.css'
 
-import { SearchFilterButton } from '@/components/button/searchFilterButton'
-import { SearchFilterInput } from '@/components/input/searchFilterInput'
+import { SearchFilterButton } from '../../components/button/searchFilterButton';
+import { SearchFilterInput } from '../../components/input/searchFilterInput'
 
 type searchFilter = {
     selection:string;
