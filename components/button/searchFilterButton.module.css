@@ -1,9 +1,19 @@
-.container_sgOne {
+.container_sgOne,
+.container_atlantis {
     height: 100%;
     aspect-ratio: 1/1;
+    border-top: none;
+    border-bottom: none;
+}
+
+.container_sgOne {
     background-color: black;
     border-right: 3px solid blue;
     border-left: 3px solid blue;
-    border-top: none;
-    border-bottom: none;
+}
+
+.container_atlantis {
+    background-color: rgba(0, 110, 255,.5);
+    border-right: 3px solid lightblue;
+    border-left: 3px solid lightblue;
 }

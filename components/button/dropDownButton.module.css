@@ -1,14 +1,28 @@
-.inactive,
-.active {
+.inactive_sgOne,
+.active_sgOne,
+.inactive_atlantis,
+.active_atlantis {
     position: relative;
     width: 100%;
+}
+
+.inactive_sgOne,
+.active_sgOne {
     background-color: black;
     border: 3px solid blue;
 }
 
+.inactive_atlantis,
+.active_atlantis {
+    background-color: rgba(0, 110, 255,.5);
+    border: 2px solid lightblue;
+}
 
-.inactive::after,
-.active::after {
+
+.inactive_sgOne::after,
+.active_sgOne::after,
+.inactive_atlnatis::after,
+.active_atlantis::after {
     position: absolute;
     content: "";
     top:0;
@@ -17,14 +31,22 @@
     left:0;
 }
 
-.inactive::after {
-    border-left: 3px solid blue;
-    border-right: 3px solid blue;
+.inactive_sgOne::after,
+.inactive_atlantis::after {
     transition: border-left 2s, border-right 2s;
 }
 
-.active::after {
+.inactive_sgOne::after {
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
+}
+
+.active_sgOne::after,
+.active_atlantis::after {
+    transition: border-left 2s, border-right 2s;
+}
+
+.active_sgOne::after {
     border-left: 15px solid blue;
     border-right: 15px solid blue;
-    transition: border-left 2s, border-right 2s;
 }

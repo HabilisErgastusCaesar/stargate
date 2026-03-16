@@ -1,12 +1,12 @@
 'use client'
 
-import styles from "./page.module.css";
+import styles from "./../../page.module.css";
 import { useEffect, useState } from "react";
 
-import { DropDownMenu } from "../../layouts/dropDownMenu/dropDownMenu";
-import { SearchFilter } from "../../layouts/searchFilter/searchFilter";
-import { StargateSmallerLayoutContainer } from "../../layouts/stargateSmallerLayoutContainer";
-import { StargateBiggerLayoutContainer } from "../../layouts/stargateBiggerLayoutContainer";
+import { DropDownMenu } from "../../../../layouts/dropDownMenu/dropDownMenu";
+import { SearchFilter } from "../../../../layouts/searchFilter/searchFilter";
+import { StargateSmallerLayoutContainer } from "../../../../layouts/stargateSmallerLayoutContainer";
+import { StargateBiggerLayoutContainer } from "../../../../layouts/stargateBiggerLayoutContainer";
 
 export default function Home() {
   const [ windowSize, setWindowSize ] = useState({
@@ -26,14 +26,14 @@ export default function Home() {
       window.removeEventListener("resize", adjustWindowSize);
     }
   }, [])
-  
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <DropDownMenu class_select={"container_sgOne"} />
-        <SearchFilter selection={"container_sgOne"}/>
+        <DropDownMenu  class_select={"container_atlantis"}/>
+        <SearchFilter selection={"container_atlantis"}/>
         {windowSize.smallerOrBigger ? (
-          <StargateSmallerLayoutContainer select_serie={"sgOne"} />
+          <StargateSmallerLayoutContainer select_serie={"atlantis"} />
         ):(
           <StargateBiggerLayoutContainer />
         )}

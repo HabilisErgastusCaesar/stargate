@@ -31,3 +31,19 @@
 .container_universe .seasons {
     justify-self: right;
 }
+
+.container_sgOne .seasons button,
+.container_atlantis .seasons button,
+.container_universe .seasons button {
+    width: 100%;
+    padding: 10px;
+}
+
+.container_sgOne .seasons button {
+    background-color: black;
+}
+
+.container_atlantis .seasons button {
+    background-color: rgba(0, 110, 255);
+
+}

@@ -3,10 +3,11 @@ import styles from './navButtonLayout.module.css'
 type navButton = {
     select: string;
     setSelect: React.Dispatch<React.SetStateAction<string>>;
+    class_select: string;
 }
 
-export const NavButtonsLayout = ({select, setSelect}:navButton) => {
-    return <section className={styles.container}>
+export const NavButtonsLayout = ({select, setSelect, class_select}:navButton) => {
+    return <section className={styles[class_select]}>
         <button 
         className={select === "cast" ? styles.button_select : styles.button_unselect}
         onClick={() => setSelect("cast")}>

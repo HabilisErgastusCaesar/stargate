@@ -1,7 +1,10 @@
-.container_sgOne {
+.container_sgOne,
+.container_atlantis {
     display: flex;
     justify-content: space-evenly;
     height: 5dvh;
-    background-color: black;
 }
 
+.container_sgOne {
+    background-color: black;
+}

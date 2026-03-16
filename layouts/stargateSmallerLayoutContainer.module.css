@@ -1,5 +1,19 @@
-.container_sgOne
-.container_atlantis
+.container_sgOne,
+.container_atlantis,
 .container_universe {
+    height: 90dvh;
+}
+
+.container_sgOne .items_container,
+.container_atlantis .items_container,
+.container_universe .items_container {
+    overflow-x: hidden;
+    overflow-y: auto;
     height: 85dvh;
+}
+
+.container_sgOne .items_container {
+    border-bottom: 3px solid blue;
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
 }

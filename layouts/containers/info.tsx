@@ -1,6 +1,10 @@
 import styles from './info.module.css'
 
-export const Info = () => {
+type info = {
+    class_select: string;
+}
+
+export const Info = ({class_select}:info) => {
     return<div>
         <h1>info</h1>
     </div>
