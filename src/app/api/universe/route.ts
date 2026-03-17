@@ -1,14 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextResponse } from "next/server";
+import stargateData from '@/app/data/stargateSgOne.json'
 
-type ResponseData = {
-  message: string
-}
-
-export default function handler (
-    req: NextApiRequest,
-    res: NextApiResponse<ResponseData>
-) {
-    if (req.method === "GET") {
-        res.status(200).json({ message: 'Hello from Next.js!' });
-    }
+export async function GET(request: Request) {
+    const url = new URL(request.url);
+    const params = url.searchParams.get("data");
+    const filtered = stargateData
+    .filter((item) => item.id.includes(`Season${params}Episode`))
+    return NextResponse.json(filtered);
 }
