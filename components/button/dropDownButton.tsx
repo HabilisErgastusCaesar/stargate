@@ -11,18 +11,10 @@ type navButton = {
 }
 
 export const DropDownButton = ({text, state, check, func, arg, number, class_select}:navButton) => {
-    let finalClassActive = "";
-    let finalClassInactive = "";
-    if (class_select === "container_sgOne") {
-        finalClassActive = "active_sgOne";
-        finalClassInactive = "inactive_sgOne";
-    } else if (class_select === "container_atlantis") {
-        finalClassActive = "active_atlantis";
-        finalClassInactive = "inactive_atlantis";
-    }
+    const newClass = class_select.replace("container_","");
     
     return<button
-    className={state && check === arg ? styles[finalClassActive] : styles[finalClassInactive]} 
+    className={state && check === arg ? styles[`active_${newClass}`] : styles[`inactive_${newClass}`]} 
     onClick={() => func(arg, number)}
     >{text}</button>
 }

@@ -1,23 +1,12 @@
 .inactive_sgOne,
 .active_sgOne,
 .inactive_atlantis,
-.active_atlantis {
+.active_atlantis,
+.inactive_universe,
+.active_universe {
     position: relative;
     width: 100%;
 }
-
-.inactive_sgOne,
-.active_sgOne {
-    background-color: black;
-    border: 3px solid blue;
-}
-
-.inactive_atlantis,
-.active_atlantis {
-    background-color: rgba(0, 110, 255,.5);
-    border: 2px solid lightblue;
-}
-
 
 .inactive_sgOne::after,
 .active_sgOne::after,
@@ -26,7 +15,6 @@
     position: absolute;
     content: "";
     top:0;
-    right:0;
     bottom:0;
     left:0;
 }
@@ -36,17 +24,73 @@
     transition: border-left 2s, border-right 2s;
 }
 
-.inactive_sgOne::after {
-    border-left: 3px solid blue;
-    border-right: 3px solid blue;
-}
-
 .active_sgOne::after,
 .active_atlantis::after {
     transition: border-left 2s, border-right 2s;
 }
 
+.inactive_sgOne,
+.active_sgOne {
+    background-color: black;
+    border: 3px solid blue;
+}
+
 .active_sgOne::after {
+    right:0;
     border-left: 15px solid blue;
     border-right: 15px solid blue;
+}
+
+.inactive_sgOne::after {
+    right:0;
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
+}
+
+.inactive_atlantis,
+.active_atlantis {
+    background-color: rgba(0, 110, 255,.5);
+    border: 2px solid lightblue;
+}
+
+.inactive_atlantis::before,
+.active_atlantis::before {
+    position: absolute;
+    content: "";
+    top:0;
+    right:0;
+    bottom:0;
+    border-top: 2px solid lightblue;
+    border-bottom: 2px solid lightblue;
+    border-right: 2px solid lightblue;
+}
+
+.inactive_atlantis::after,
+.active_atlantis::after {
+    position: absolute;
+    content: "";
+    top:0;
+    bottom:0;
+    left: 0;
+    border-top: 2px solid lightblue;
+    border-bottom: 2px solid lightblue;
+    border-left: 2px solid lightblue;
+}
+
+.inactive_atlantis::before,
+.inactive_atlantis::after {
+    width: 20%;
+    transition: width 2s;
+}
+
+.active_atlantis::before,
+.active_atlantis::after {
+    width: 50%;
+    transition: width 2s;
+}
+
+.inactive_universe,
+.active_universe {
+    background-color: rgba(251, 255, 0, 0.5);
+    border: 2px solid lightblue;
 }
