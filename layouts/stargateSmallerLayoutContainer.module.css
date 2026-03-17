@@ -1,0 +1,50 @@
+.container_sgOne,
+.container_atlantis,
+.container_universe {
+    height: 90dvh;
+}
+
+.container_sgOne .items_container,
+.container_atlantis .items_container,
+.container_universe .items_container {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 85dvh;
+}
+
+.container_sgOne .items_container {
+    border-bottom: 3px solid blue;
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
+}
+
+.container_atlantis .items_container {
+    position: relative;
+    border-bottom: 3px solid lightblue;
+    border-left: 3px solid lightblue;
+    border-right: 3px solid lightblue;
+    background-color: rgba(0, 110, 255,.5);
+}
+
+.container_atlantis .items_container::before,
+.container_atlantis .items_container::after {
+    position: absolute;
+    content: "";
+    right: 5px;
+    left: 5px;
+}
+
+.container_atlantis .items_container::before {
+    border-left: 3px solid lightblue;
+    border-right: 3px solid lightblue;
+    top: 0;
+    height: 85%;
+}
+
+.container_atlantis .items_container::after {
+    border-bottom: 3px solid lightblue;
+    border-left: 3px solid lightblue;
+    border-right: 3px solid lightblue;
+    bottom: 5px;
+    height: 5%;
+}

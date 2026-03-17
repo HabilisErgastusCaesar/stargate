@@ -1,0 +1,19 @@
+.container_sgOne,
+.container_atlantis {
+    height: 100%;
+    width: 90%;
+    color: black;
+    background-color: white;
+    border-top: none;
+    border-bottom: none;
+}
+
+.container_sgOne {
+    border-right: 3px solid blue;
+    border-left: 3px solid blue;
+}
+
+.container_atlantis {
+    border-right: 3px solid lightblue;
+    border-left: 3px solid lightblue;
+}
