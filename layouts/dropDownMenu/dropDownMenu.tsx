@@ -13,14 +13,15 @@ export const DropDownMenu = ({class_select}:dropDown) => {
     const [ dropDown, setDropDown ] = useState({
         open: false,
         number: 5,
-        class: "container_sgOne"
+        class: class_select
     });
 
     const selectOpen = (class_selection:string, number:number) => {
         if (dropDown.open && dropDown.class === class_selection) {
             setDropDown((prev) => ({
                 ...prev,
-                open: false
+                open: false,
+                class: class_select
             }))
         } else {
             setDropDown(() => ({

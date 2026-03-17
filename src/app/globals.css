@@ -7,6 +7,10 @@ button {
   cursor: pointer;
 }
 
+input {
+  text-align: center;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

@@ -44,10 +44,11 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
     }
 
     return <div className={styles[Class]} onClick={() => setState((prev:any) => ({
-                    ...prev,
-                    open: false,
-                    class: class_select,
-                }))}>
+            ...prev,
+            open: false,
+            class: class_select,
+        }))}>
+        <label>seasons</label>
         {seasons.map((item, index) => {
             if (index < number) {
                 return <section key={index}>
@@ -57,5 +58,10 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
                     </section>
             }
         })}
+        <label>rest</label>
+        <section className={styles.castInfo}>
+            <button>cast</button>
+            <button>info</button>
+        </section>
     </div>
 }

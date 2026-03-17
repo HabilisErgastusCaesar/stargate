@@ -1,5 +1,6 @@
 .container_sgOne,
-.container_atlantis {
+.container_atlantis,
+.container_universe {
     display: flex;
     justify-content: space-evenly;
     height: 5dvh;
