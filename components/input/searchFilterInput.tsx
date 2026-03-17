@@ -1,6 +1,7 @@
 import styles from './searchFilterInput.module.css'
 
 type filterInput = {
+<<<<<<< HEAD
     selection: string;
     setOpen: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -21,4 +22,11 @@ export const SearchFilterInput = ({selection, setOpen}:filterInput) => {
     }
     
     return <input onChange={(e) => setText(e)} placeholder='search episode' className={styles[selection]} />
+=======
+    selection: string
+}
+
+export const SearchFilterInput = ({selection}:filterInput) => {
+    return <input placeholder='kanker' className={styles[selection]} />
+>>>>>>> 2a5edbba64cc0889fd6abacc6e13aa09685ea2c0
 }

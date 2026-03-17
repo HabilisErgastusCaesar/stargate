@@ -1,4 +1,5 @@
 .container {
+<<<<<<< HEAD
     position: relative;
 }
 
@@ -7,3 +8,8 @@
     height: 5dvh;
 }
 
+=======
+    display: flex;
+    height: 5dvh;
+}
+>>>>>>> 2a5edbba64cc0889fd6abacc6e13aa09685ea2c0
