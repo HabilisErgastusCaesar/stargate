@@ -9,6 +9,9 @@ export const SearchFilterButton = ({selection, setOptions}:filterButton) => {
     return<button className={styles[selection]}
     onClick={() => setOptions((prev:any) => ({
         ...prev,
-        open: !prev.open,
+        options: {
+            ...prev.options,
+            open: !prev.options.open,
+        }
     }))}>open</button>
 }

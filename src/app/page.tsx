@@ -3,8 +3,7 @@
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
-import { DropDownMenu } from "../../layouts/dropDownMenu/dropDownMenu";
-import { SearchFilter } from "../../layouts/searchFilter/searchFilter";
+import { Header } from "../../layouts/header/header";
 import { StargateSmallerLayoutContainer } from "../../layouts/stargateSmallerLayoutContainer";
 import { StargateBiggerLayoutContainer } from "../../layouts/stargateBiggerLayoutContainer";
 
@@ -30,8 +29,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <DropDownMenu class_select={"container_sgOne"} />
-        <SearchFilter selection={"container_sgOne"}/>
+        <Header class_select="container_sgOne" />
         {windowSize.smallerOrBigger ? (
           <StargateSmallerLayoutContainer select_serie={"sgOne"} />
         ):(

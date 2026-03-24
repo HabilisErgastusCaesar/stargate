@@ -45,8 +45,11 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
 
     return <div className={styles[Class]} onClick={() => setState((prev:any) => ({
             ...prev,
-            open: false,
-            class: class_select,
+            dropDown: {
+                ...prev.dropDown,
+                open: false,
+                class_select: prev.class,
+            }
         }))}>
         <label>seasons</label>
         {seasons.map((item, index) => {

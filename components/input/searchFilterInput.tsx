@@ -10,15 +10,15 @@ export const SearchFilterInput = ({selection, setOpen}:filterInput) => {
         const target = event.target.value;
         setOpen((prev:any) => {
             const newData = prev;
-            if (target !== "" && !newData.open) {
-                newData.open = true;
+            if (target !== "" && !newData.searchState.open) {
+                newData.searchState.open = true;
             } else if (target === "") {
-                newData.open = false;
+                newData.searchState.open = false;
             } 
-            newData.searchResults = target;
+            newData.searchState.searchResults = target;
             return {...newData};
         })
     }
     
-    return <input onChange={(e) => setText(e)} placeholder='search episode' className={styles[selection]} />
+    return <input id='searchFilterInput' onChange={(e) => setText(e)} placeholder='search episode' className={styles[selection]} />
 }

@@ -1,0 +1,172 @@
+@keyframes dialingMolog0 {
+  0% {
+    background-color: black;
+  }
+  10% {
+    background-color: black;
+  }
+  11% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog1 {
+  0% {
+    background-color: black;
+  }
+  20% {
+    background-color: black;
+  }
+  21% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog2 {
+  0% {
+    background-color: black;
+  }
+  30% {
+    background-color: black;
+  }
+  31% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog3 {
+  0% {
+    background-color: black;
+  }
+  40% {
+    background-color: black;
+  }
+  41% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog4 {
+  0% {
+    background-color: black;
+  }
+  50% {
+    background-color: black;
+  }
+  51% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog5 {
+  0% {
+    background-color: black;
+  }
+  60% {
+    background-color: black;
+  }
+  61% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog6 {
+  0% {
+    background-color: black;
+  }
+  70% {
+    background-color: black;
+  }
+  71% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+@keyframes dialingMolog7 {
+  0% {
+    background-color: black;
+  }
+  80% {
+    background-color: black;
+  }
+  81% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgb(0, 0, 0, 0);
+  }
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-self: center;
+    width: 100%;
+}
+
+.container section {
+    position: relative;
+    width: 20%;
+    border: 3px solid blue;
+    aspect-ratio: 1/1;
+    margin: 3px;
+}
+
+.container section img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.container section::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.container section:nth-of-type(1)::before {
+    animation: dialingMolog0 12s infinite;
+}
+
+.container section:nth-of-type(2)::before {
+    animation: dialingMolog1 12s infinite;
+}
+
+.container section:nth-of-type(3)::before {
+    animation: dialingMolog2 12s infinite;
+}
+
+.container section:nth-of-type(4)::before {
+    animation: dialingMolog3 12s infinite;
+}
+
+.container section:nth-of-type(5)::before {
+    animation: dialingMolog4 12s infinite;
+}
+
+.container section:nth-of-type(6)::before {
+    animation: dialingMolog5 12s infinite;
+}
+
+.container section:nth-of-type(7)::before {
+    animation: dialingMolog6 12s infinite;
+}

@@ -1,4 +1,5 @@
 import styles from './episode.module.css'
+import { DialingScreen } from '../../components/items/dialingScreen';
 
 import { useState } from 'react'
 
@@ -40,12 +41,12 @@ export const Episode = ({class_select}:episode) => {
         <div className={styles.items_container}>
         <h1>stargate {class_select.replace("sgOne","sg-1")}</h1>
         {episodes.map((item: any, index) => {
-            console.log(item);
             return <div key={item.id}>
+                {index % 4 === 0 && <DialingScreen />}
                 <h4>episode {index + 1}</h4>
                 <h4>{item.name}</h4>
                 <p>{item.description}</p>
-                <img src={item.img} />
+                <img src={item.img} alt="" />
                 <h4>{item.airDate}</h4>
             </div>
         })}
