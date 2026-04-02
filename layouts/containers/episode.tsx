@@ -1,56 +1,97 @@
 import styles from './episode.module.css'
 import { DialingScreen } from '../../components/items/dialingScreen';
+import { useStargateContext } from '../../Context/episodeContext';
+import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling';
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { usePathname } from "next/navigation";
 
 type episode = {
     class_select: string;
 }
 
 export const Episode = ({class_select}:episode) => {
-    console.log(class_select)
-    const [ episodes, setEpisodes ] = useState<HTMLElement[]>([]) ?? []; 
-
+    const asPath = usePathname();
+    let number:number | string = 1;
+    if (asPath.includes("season")) {
+        number = parseInt(asPath
+            .replace("/atlantis/season","")
+            .replace("/universe/season","")
+            .replace("/season","")
+        )
+    }
+    const { selection, setSelection }:any = useStargateContext();
+    const [ showItems, setShowItems ] = useState<HTMLElement[]>([]) ?? [];
+    const getItems = [...selection(class_select,`Season${number}`)];
+    const headContainer = useRef<HTMLDivElement>(null);
+    
     const getData = () => {
         const fetchData = async() => {
-            const data = await fetch(`/api/${class_select}?data=${encodeURIComponent(1)}`,{
+            const data = await fetch(`/api/${class_select}?data=${encodeURIComponent(number)}`,{
                 method: "GET"
             });
             return await data.json();
-        }
+        };
 
         const responseData = async() => {
             const response = await fetchData();
             return response
-        }
+        };
 
         responseData().catch((error => {
             console.log(error);
         })).then(item => {
-            setEpisodes(item);
+            setSelection(class_select)((prev:any) => {
+                const newData = {...prev};
+                if (newData[`Season${number}`].length === 0) {
+                    newData[`Season${number}`].push(...item);
+                }
+                return {...newData};
+            });
+            if (window.innerWidth < 1500) {
+                setShowItems([...item.slice(0,5)]);
+                getItems.push(...item);
+            } else {
+                setShowItems([...item]);
+                getItems.push(...item);
+            }
         })
+    };
 
-    }
-
-    if (episodes.length === 0) {
+    if (getItems.length === 0) {
         getData();
-    }
+    } else if (showItems.length === 0) {
+        if (window.innerWidth < 1500) {
+            setShowItems([...getItems.slice(0,5)]);
+        } else {
+            setShowItems([...getItems]);
+        }
+    };
+
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer});
     
 
-    return<div className={styles[`container_${class_select}`]}>
+    return<div className={styles[`container_${class_select}`]}
+    ref={headContainer}>
         <div className={styles.items_container}>
-        <h1>stargate {class_select.replace("sgOne","sg-1")}</h1>
-        {episodes.map((item: any, index) => {
-            return <div key={item.id}>
-                {index % 4 === 0 && <DialingScreen />}
-                <h4>episode {index + 1}</h4>
-                <h4>{item.name}</h4>
-                <p>{item.description}</p>
-                <img src={item.img} alt="" />
-                <h4>{item.airDate}</h4>
-            </div>
-        })}
-
+            <section className={styles.header}> 
+                <h3>stargate {class_select.replace("sgOne","sg-1")}</h3>
+                <h3>season {number}</h3>
+            </section>
+        <div className={styles.grid_container}>
+            <span className={styles.dial_container}>
+                <DialingScreen />
+            </span>
+            {showItems.map((item: any, index) => {
+                return <div key={item.id} className={styles.item}>
+                    <h4>E{index + 1} {item.name}</h4>
+                    <p>{item.description}</p>
+                    <img src={item.img} alt="" />
+                    <span></span>
+                    <h4>{item.airDate}</h4>
+                </div>
+            })}
+        </div>
         </div>
     </div>
 }

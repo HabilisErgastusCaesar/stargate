@@ -1,0 +1,19 @@
+.button_sgOne,
+.button_atlantis {
+    padding: 10px;
+    width: 100%;
+    transition: border-left 3s, border-right 3s;
+}
+
+.button_sgOne {
+    border-left: 3px solid blue;
+    border-right: 3px solid blue;
+    border-bottom: 3px solid blue;
+    background-color: black;
+    border-top: none;
+}
+
+.button_sgOne:hover {
+    border-left: 30px solid blue;
+    border-right: 30px solid blue;
+}

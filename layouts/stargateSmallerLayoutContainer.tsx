@@ -17,7 +17,7 @@ export const StargateSmallerLayoutContainer = ({select_serie}:smaller) => {
         <NavButtonsLayout select={select} setSelect={setSelect} class_select={select_serie} />
         <div className={styles.items_container}>
             {select === "cast" && <Cast class_select={select_serie} />}
-            {select === "episode" && <Episode class_select={select_serie}/>}
+            {select === "episode" && <Episode class_select={select_serie} />}
             {select === "info" && <Info class_select={select_serie} />}
         </div>
     </div>

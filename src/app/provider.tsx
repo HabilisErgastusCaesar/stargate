@@ -2,6 +2,7 @@
 
 import React from "react";
 import { StargateProvider } from "../../Context/episodeContext";
+import { CastProvider } from "../../Context/castContext";
 
 interface providerProps {
     children: React.ReactNode;
@@ -9,6 +10,8 @@ interface providerProps {
 
 export function Provider({children}: providerProps) {
     return <StargateProvider>
-        {children}
+        <CastProvider>
+            {children}
+        </CastProvider>
     </StargateProvider>
 }

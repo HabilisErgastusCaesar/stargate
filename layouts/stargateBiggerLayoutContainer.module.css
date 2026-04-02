@@ -1,0 +1,12 @@
+.container_sgOne,
+.container_atlantis,
+.container_universe {
+    height: 90dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.container_sgOne {
+    scrollbar-color: rgb(0, 255, 13) rgba(0, 110, 255, 0);
+    border: 3px solid blue;
+}

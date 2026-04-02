@@ -25,6 +25,7 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
     ]
 
     const setNavigation = (index:number) => {
+        event?.preventDefault();
         const select_link = () => {
             if (Class === "container_atlantis") {
                 return "atlantis";
@@ -48,7 +49,7 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
             dropDown: {
                 ...prev.dropDown,
                 open: false,
-                class_select: prev.class,
+                class: class_select,
             }
         }))}>
         <label>seasons</label>

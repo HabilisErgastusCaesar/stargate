@@ -1,0 +1,52 @@
+.container_sgOne,
+.container_atlantis,
+.container_universe {
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 90dvh;
+    cursor: default;
+}
+
+.container_sgOne {
+    scrollbar-color: rgb(0, 255, 13) rgba(0, 110, 255, 0);
+}
+
+.container_sgOne h3 {
+    padding: 10px;
+    border-bottom: 3px solid blue;
+    border-right: 30px solid blue;
+    border-left: 30px solid blue;
+}
+
+.container_sgOne section,
+.container_atlantis section,
+.container_universe section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.container_sgOne section h4 {
+    padding: 10px;
+    border-top: 3px solid blue;
+    border-bottom: 3px solid blue;
+    border-right: 30px solid blue;
+    border-left: 30px solid blue;
+}
+
+.container_sgOne section img {
+    border-right: 3px solid blue;
+    border-left: 3px solid blue;
+}
+
+.container_sgOne .items_container,
+.container_atlantis .items_container,
+.container_univers .items_container {
+    height: fit-content;
+}
+
+.container_sgOne section img,
+.container_atlantis section img,
+.container_universe section img {
+    width: 100%;
+}

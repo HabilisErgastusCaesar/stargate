@@ -1,0 +1,17 @@
+.container_sgOne,
+.container_atlantis,
+.container_universe {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(3px);
+}
+
+.container_sgOne button,
+.container_atlantis button,
+.container_universe button {
+    width: 20%;
+    aspect-ratio: 1/1;
+}

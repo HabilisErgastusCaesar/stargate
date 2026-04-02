@@ -25,7 +25,8 @@ export const Header = ({class_select}:header) => {
         serie: "all",
         },
         class: class_select,
-    })
+    });
+
     return <div>
         <DropDownMenu popup={popup} setPopup={setPopup} />
         <SearchFilter popup={popup} setPopup={setPopup} />

@@ -1,30 +1,25 @@
 'use client'
 
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Header } from "../../layouts/header/header";
 import { StargateSmallerLayoutContainer } from "../../layouts/stargateSmallerLayoutContainer";
 import { StargateBiggerLayoutContainer } from "../../layouts/stargateBiggerLayoutContainer";
+import { setjustWindowSize } from "../../sharedFunc/adjustWindowSize";
 
 export default function Home() {
   const [ windowSize, setWindowSize ] = useState({
     smallerOrBigger : true,
   })
 
-  const adjustWindowSize = () => {
-
+  if (typeof window === undefined) {
+    return <h1></h1>
   }
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener("resize", adjustWindowSize);
-    }
-
-    return () => {
-      window.removeEventListener("resize", adjustWindowSize);
-    }
-  }, [])
+  
+  const windowSizeSelect = windowSize.smallerOrBigger
+  
+  setjustWindowSize({setWindowSize, windowSizeSelect});
   
   return (
     <div className={styles.page}>
@@ -33,7 +28,7 @@ export default function Home() {
         {windowSize.smallerOrBigger ? (
           <StargateSmallerLayoutContainer select_serie={"sgOne"} />
         ):(
-          <StargateBiggerLayoutContainer />
+          <StargateBiggerLayoutContainer select_serie={"sgOne"} />
         )}
       </main>
     </div>
