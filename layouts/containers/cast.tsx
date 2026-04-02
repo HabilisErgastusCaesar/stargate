@@ -3,12 +3,13 @@ import styles from './cast.module.css'
 import { useCastContext } from '../../Context/castContext'
 import { CastNumber } from '../../components/button/castNumber'
 import { ShowNumberEpisodes } from '../showNumberEpisodes/showNumberEpisodes'
+import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 
 type cast = {
     class_select: string;
-}
+};
 
 type item = {
     id: string;
@@ -39,14 +40,14 @@ type item = {
     atlantis: boolean;
     universe: boolean;
     img: string;
-}
+};
 
 export const Cast = ({class_select}:cast) => {
     const { selection, setCast } = useCastContext();
     const headContainer = useRef(null);
 
-    const [ getCast, setGetCast ] = useState([...selection(class_select)]) ?? [];
-    const [ showCast, setShowCast ] = useState<item[]>([]);
+    const [ getItems, setGetItems ] = useState([...selection(class_select)]) ?? [];
+    const [ showItems, setShowItems ] = useState<item[]>([]);
     const [ open, setOpen ] = useState("");
 
     const getData = () => {
@@ -64,7 +65,7 @@ export const Cast = ({class_select}:cast) => {
         responseData()
         .catch((error) => console.log(error))
         .then((item) => {
-            setGetCast([...item]);
+            setGetItems([...item]);
             setCast((prev: item[]) => {
                 const newData = prev;
                 const filtered =  newData.filter((filt:any) => filt[class_select] === true);
@@ -73,34 +74,24 @@ export const Cast = ({class_select}:cast) => {
                 }
                 return [...newData];
             })
-            setShowCast([...item.slice(0, 3)]);
+            setShowItems([...item.slice(0, 3)]);
         })
     }
 
-    if (getCast.length === 0) {
+    if (getItems.length === 0) {
         getData();
-    } else if (showCast.length === 0) {
-        setShowCast([...getCast.slice(0, 3)]);
+    } else if (showItems.length === 0) {
+        setShowItems([...getItems.slice(0, 3)]);
     }
 
-    const scroll = () => {
-
-    }
-
-    useEffect(() => {
-        console.log(headContainer.current);
-
-        return () => {}
-    },[]);
-
-    
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer});
 
     return<div className={styles[`container_${class_select}`]}
     ref={headContainer}>
         <h3>cast</h3>
         <section className={styles.items_container}>
         {open !== "" && <ShowNumberEpisodes class_select={class_select} open={open} setOpen={setOpen} />}
-        {showCast.map((item: item) => {
+        {showItems.map((item: item) => {
             return <section key={item.id}>
                 <h4>{item.name}</h4>
                 <CastNumber class_select={class_select} item={item} setOpen={setOpen} />
