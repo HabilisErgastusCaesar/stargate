@@ -1,8 +1,20 @@
 .container {
     position: relative;
+    width: 100%;
 }
 
 .container span {
     display: flex;
     height: 5dvh;
+}
+
+@media screen and (min-width: 600px) {
+    .container {
+        flex: 1;
+        max-width: 600px;
+    }
+
+    .container span {
+        flex-direction: row-reverse;
+    }
 }

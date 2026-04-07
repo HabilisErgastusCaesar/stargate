@@ -1,3 +1,5 @@
+import styles from './header.module.css'
+
 import { DropDownMenu } from "./dropDownMenu/dropDownMenu"
 import { SearchFilter } from "./searchFilter/searchFilter"
 
@@ -27,7 +29,7 @@ export const Header = ({class_select}:header) => {
         class: class_select,
     });
 
-    return <div>
+    return <div className={styles.container}>
         <DropDownMenu popup={popup} setPopup={setPopup} />
         <SearchFilter popup={popup} setPopup={setPopup} />
     </div>

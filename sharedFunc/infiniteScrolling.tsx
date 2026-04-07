@@ -5,9 +5,12 @@ type scroll = {
     getItems: any;
     setShowItems: React.Dispatch<React.SetStateAction<any>>;
     headContainer: any;
+    numberAdd: number;
 }
 
-export const infiniteScrolling = ({showItems, getItems, setShowItems, headContainer}:scroll) => {
+export const infiniteScrolling = ({
+    showItems, getItems, setShowItems, headContainer, numberAdd
+}:scroll) => {
     const throttle = (func: Function, limit: number) => {
         let lastFunc: any;
         let lastRan: number | null = null;
@@ -31,7 +34,7 @@ export const infiniteScrolling = ({showItems, getItems, setShowItems, headContai
 
     const pushNewEpisodes = () => {
         const length = showItems.length;
-        const adding = getItems.slice(0, length + 5);
+        const adding = getItems.slice(0, length + numberAdd);
         setShowItems([...adding]);
     }
 

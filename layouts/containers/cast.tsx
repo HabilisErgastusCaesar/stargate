@@ -4,6 +4,7 @@ import { useCastContext } from '../../Context/castContext'
 import { CastNumber } from '../../components/button/castNumber'
 import { ShowNumberEpisodes } from '../showNumberEpisodes/showNumberEpisodes'
 import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling'
+import { DialingScreen } from '../../components/items/dialingScreen'
 
 import { useState, useRef } from 'react'
 
@@ -49,6 +50,7 @@ export const Cast = ({class_select}:cast) => {
     const [ getItems, setGetItems ] = useState([...selection(class_select)]) ?? [];
     const [ showItems, setShowItems ] = useState<item[]>([]);
     const [ open, setOpen ] = useState("");
+    const numberAdd = 3;
 
     const getData = () => {
         const fetchData = async() => {
@@ -84,11 +86,13 @@ export const Cast = ({class_select}:cast) => {
         setShowItems([...getItems.slice(0, 3)]);
     }
 
-    infiniteScrolling({showItems, getItems, setShowItems, headContainer});
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd});
 
     return<div className={styles[`container_${class_select}`]}
     ref={headContainer}>
-        <h3>cast</h3>
+        {class_select === "sgOne" && <span className={styles.dial_container}>
+            <DialingScreen />
+        </span>}
         <section className={styles.items_container}>
         {open !== "" && <ShowNumberEpisodes class_select={class_select} open={open} setOpen={setOpen} />}
         {showItems.map((item: item) => {

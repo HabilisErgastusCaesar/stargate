@@ -1,26 +1,130 @@
 import styles from './info.module.css'
 
 import { getInfoSgOneData } from '../../sharedFunc/infoData/getInfoSgOneData'
+import { getInfoAtlantisData } from '../../sharedFunc/infoData/getInfoAtlantisData'
+import { getInfoUniverseData } from '../../sharedFunc/infoData/getInfoUniverseData'
+import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling'
+import { DialingScreen } from '../../components/items/dialingScreen'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 type info = {
     class_select: string;
 }
 
+type show = {
+    title: string;
+    info: string;
+    list: string[] | [];
+    list_items: string[] | [];
+}
+
 export const Info = ({class_select}:info) => {
     const headContainer = useRef(null);
-    console.log(class_select);
-    const [ showItems, setShowItems ] = useState<any>([]);
-    if (class_select === "sgOne" && showItems.length === 0) {
-        const item = getInfoSgOneData(2);
-        if (item !== null) setShowItems(getInfoSgOneData(2));
+    const [ showItems, setShowItems ] = useState<show[] | undefined>([]);
+    const [ getItems, setGetItems ] = useState<any>([]);
+    const numberAdd = 2;
+
+    const getSgOneData = (selection:number | string) => {
+        setShowItems(getInfoSgOneData(selection));
+        if (typeof selection === 'number') setGetItems(getInfoSgOneData("all"));
+    };
+    
+    const getAtlantisData = (selection:number | string) => {
+        setShowItems(getInfoAtlantisData(selection));
+        if (typeof selection === 'number') setGetItems(getInfoAtlantisData("all"));
     };
 
-    console.log(showItems);
+    const getUniverseData = (selection:number | string) => {
+        setShowItems(getInfoUniverseData(selection));
+        if (typeof selection === 'number') setGetItems(getInfoUniverseData("all"));
+    };
 
-    return<div className={styles[`container${class_select}`]}
+    const getData = (selection:number | string) => {
+        switch (class_select) {
+            case "sgOne":
+                getSgOneData(selection);
+                break;
+            case "atlantis":
+                getAtlantisData(selection);
+                break;
+            case "universe":
+                getUniverseData(selection);
+                break;
+            default: null;
+        }
+    }
+
+    if (typeof window !== "undefined") {
+        if (window.innerWidth <= 1500 && (showItems as show[]).length === 0) {
+            getData(2);
+        } else if ((showItems as show[]).length === 0) {
+            getData("all");
+        }
+    };
+
+    const throttle = (func:any, limit: number) => {
+        let lastFunc: any;
+        let lastRun: number | null = null;
+
+        return function(this: any, ...args: any[]) {
+            const context = this;
+            if (!lastRun) {
+                func.apply(context, args);
+                lastRun = Date.now();
+            } else {
+                clearTimeout(lastRun);
+                lastFunc = setTimeout(() => {
+                    if ((Date.now() - (lastRun as number) >= limit)) {
+                        func.apply(context, args);
+                        lastRun = Date.now();
+                    }
+                }, limit - (Date.now() - (lastRun as number)));
+            }
+        }
+    }
+
+    useEffect(() => {
+        const resize = throttle(() => {
+            if (window.innerWidth <= 1500 && (showItems as show[]).length === 0) {
+                getData(2);
+                if (getItems.length > 0) {
+                    setGetItems([]);
+                }
+            } else if ((showItems as show[]).length === 0) {
+                getData("all");
+            }
+        }, 400);
+
+        if (typeof window !== "undefined") {
+            window.addEventListener("resize", resize);
+        }
+        return () => {
+            window.removeEventListener("resize", resize);
+        }
+    }, [getItems]);
+
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd});
+
+    return<div className={styles[`container_${class_select}`]}
     ref={headContainer}>
-        <h1>info</h1>
+        {class_select === "sgOne" && <span className={styles.dial_container}>
+            <DialingScreen />
+        </span>}
+        {showItems?.map((item, index) => {
+            return <section key={index}>
+                {item.title !== "" && <h3>{item.title}</h3>}
+                {item.info !== "" && <p>{item.info}</p>}
+                {item.list.length > 0 && <ul>
+                    {item.list.map((itm,idx) => {
+                    return <li key={idx}>{itm}</li>
+                })}</ul>}
+                {item.list_items.length > 0 && <ul>
+                    {item.list_items.map((itm, idx) => {
+                        return <li key={idx}>{itm}</li>
+                    })}
+                    </ul>}
+            </section>
+        })}
     </div>
 }

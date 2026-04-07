@@ -1,8 +1,9 @@
 .container_sgOne,
 .container_atlantis {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     overflow-y: auto;
+    align-items: center;
     height: 85dvh;
     scrollbar-color: rgb(0, 255, 13) rgba(0, 110, 255, 0);
 }
@@ -68,6 +69,14 @@
     grid-template-columns: 100%;
 }
 
+@media screen and (min-width: 600px) {
+    .container_sgOne,
+    .container_atlantis,
+    .container_universe {
+        height: 90dvh;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .container_sgOne .grid_container,
     .container_atlantis .grid_container,
@@ -130,6 +139,8 @@
 @media screen and (min-width: 1500px) {
     .container_sgOne {
         height: fit-content;
+        width: 90%;
+        justify-self: center;
     }
     
     .container_sgOne .grid_container,

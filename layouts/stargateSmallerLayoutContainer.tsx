@@ -5,13 +5,22 @@ import { Episode } from './containers/episode'
 import { Info } from './containers/info'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 type smaller = {
     select_serie: string;
 }
 
 export const StargateSmallerLayoutContainer = ({select_serie}:smaller) => {
-    const [ select, setSelect ] = useState<string>("episode");
+    const [ select, setSelect ] = useState<string>("none");
+
+    if (usePathname().includes("Cast") && select !== 'cast') {
+        setSelect("cast");
+    } else if (usePathname().includes("Info") && select !== 'info') {
+        setSelect("info");
+    } else if (usePathname().includes("Episode") && select !== 'episode') {
+        setSelect("episode");
+    };
 
     return <div className={styles[`container_${select_serie}`]}>
         <NavButtonsLayout select={select} setSelect={setSelect} class_select={select_serie} />

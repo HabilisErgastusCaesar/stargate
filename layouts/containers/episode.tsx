@@ -3,7 +3,7 @@ import { DialingScreen } from '../../components/items/dialingScreen';
 import { useStargateContext } from '../../Context/episodeContext';
 import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling';
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { usePathname } from "next/navigation";
 
 type episode = {
@@ -24,6 +24,7 @@ export const Episode = ({class_select}:episode) => {
     const [ showItems, setShowItems ] = useState<HTMLElement[]>([]) ?? [];
     const getItems = [...selection(class_select,`Season${number}`)];
     const headContainer = useRef<HTMLDivElement>(null);
+    const numberAdd = 3;
     
     const getData = () => {
         const fetchData = async() => {
@@ -49,7 +50,7 @@ export const Episode = ({class_select}:episode) => {
                 return {...newData};
             });
             if (window.innerWidth < 1500) {
-                setShowItems([...item.slice(0,5)]);
+                setShowItems([...item.slice(0,3)]);
                 getItems.push(...item);
             } else {
                 setShowItems([...item]);
@@ -62,13 +63,13 @@ export const Episode = ({class_select}:episode) => {
         getData();
     } else if (showItems.length === 0) {
         if (window.innerWidth < 1500) {
-            setShowItems([...getItems.slice(0,5)]);
+            setShowItems([...getItems.slice(0,3)]);
         } else {
             setShowItems([...getItems]);
         }
     };
 
-    infiniteScrolling({showItems, getItems, setShowItems, headContainer});
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd});
     
 
     return<div className={styles[`container_${class_select}`]}
@@ -79,9 +80,9 @@ export const Episode = ({class_select}:episode) => {
                 <h3>season {number}</h3>
             </section>
         <div className={styles.grid_container}>
-            <span className={styles.dial_container}>
+            {class_select === "sgOne" && <span className={styles.dial_container}>
                 <DialingScreen />
-            </span>
+            </span>}
             {showItems.map((item: any, index) => {
                 return <div key={item.id} className={styles.item}>
                     <h4>E{index + 1} {item.name}</h4>

@@ -50,3 +50,15 @@
 .container_universe section img {
     width: 100%;
 }
+
+@media screen and (min-width: 600px) {
+    .container_sgOne,
+    .container_atlantis,
+    .container_universe {
+        text-align: center;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 95dvh;
+        cursor: default;
+    }   
+}

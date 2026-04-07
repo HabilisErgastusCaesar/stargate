@@ -35,14 +35,13 @@ export const setjustWindowSize = ({setWindowSize, windowSizeSelect}:window) => {
 
     const adjustWindowSize = throttle(() => {
         if (typeof window !== undefined) {
-            console.log(windowSizeSelect)
             if (window.innerWidth >= 1500 && windowSizeSelect) {
                 setWindowSize({smallerOrBigger : false});
             } else if (!windowSizeSelect) {
                 setWindowSize({smallerOrBigger : true});
             }
         }
-    }, 400)
+    }, 400);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {

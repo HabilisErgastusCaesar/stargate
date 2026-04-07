@@ -24,7 +24,7 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
         "season 10",
     ]
 
-    const setNavigation = (index:number) => {
+    const setNavigation = (index:number, selection: string) => {
         event?.preventDefault();
         const select_link = () => {
             if (Class === "container_atlantis") {
@@ -33,14 +33,24 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
                 return "universe";
             }
             return "";
-        }
+        };
+
+        const selectPrevIndex = () => {
+            return 4;
+        };
         
         const linked = select_link();
         
+        const prevIndex = selectPrevIndex();
+        
         if (linked === "") {
-            router.push(`/season${index}`);
+            if (selection === "episode") router.push(`/season${index}&Episode`);
+            if (selection === "cast") router.push(`/season${prevIndex}&Cast`);
+            if (selection === "info") router.push(`/season${prevIndex}&Info`);
         } else {
-            router.push(`/${linked}/season${index}`);
+            if (selection === "episode") router.push(`/${linked}/season${index}&Episode`);
+            if (selection === "cast") router.push(`/${linked}/season${prevIndex}&Cast`);
+            if (selection === "info") router.push(`/${linked}/season${prevIndex}&Info`);
         }
     }
 
@@ -57,15 +67,15 @@ export const DropDownSelectSeason = ({number, class_select, Class, setState}:dro
             if (index < number) {
                 return <section key={index}>
                     <section className={styles.seasons}>
-                            <button onClick={() => setNavigation(index + 1)}>{item}</button>
+                            <button onClick={() => setNavigation(index + 1, "episode")}>{item}</button>
                     </section>
                     </section>
             }
         })}
         <label>rest</label>
         <section className={styles.castInfo}>
-            <button>cast</button>
-            <button>info</button>
+            <button onClick={() => setNavigation(1, "cast")}>cast</button>
+            <button onClick={() => setNavigation(1, "info")}>info</button>
         </section>
     </div>
 }
