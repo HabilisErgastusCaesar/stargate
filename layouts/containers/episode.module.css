@@ -54,10 +54,6 @@
     border-right: 3px solid blue;
 }
 
-.container_sgOne .dial_container {
-    border: 3px solid blue
-}
-
 .container_sgOne .item {
     margin-bottom: 20px;
 }
@@ -129,11 +125,6 @@
     .container_sgOne .grid_container span {
         grid-column: span 3;
     }
-
-    .container_sgOne .dial_container {
-        border-left: 30px solid blue;
-        border-right: 30px solid blue;
-    }
 }
 
 @media screen and (min-width: 1500px) {
@@ -153,10 +144,5 @@
 
     .container_sgOne .grid_container span {
         grid-column: span 4;
-    }
-
-    .container_sgOne .dial_container {
-        border-left: 300px solid blue;
-        border-right: 300px solid blue;
     }
 }

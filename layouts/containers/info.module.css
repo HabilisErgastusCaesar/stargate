@@ -56,10 +56,4 @@
         width: 80%;
         height: fit-content;
     }
-
-    .container_sgOne .dial_container {
-        display: flex;
-        border-left: 300px solid blue;
-        border-right: 300px solid blue;
-    }
 }

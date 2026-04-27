@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import stargateData from '@/app/data/stargateSgOne.json'
+import stargateData from '@/app/data/stargateSgOne.json' with { type: "json" }
 
 export async function GET(request: Request) {
     const url = new URL(request.url);

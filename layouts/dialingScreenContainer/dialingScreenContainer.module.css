@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid blue;
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        border-left: 30px solid blue;
+        border-right: 30px solid blue;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .container {
+        border-left: 300px solid blue;
+        border-right: 300px solid blue;
+    }
+}

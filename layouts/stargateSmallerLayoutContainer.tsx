@@ -22,6 +22,8 @@ export const StargateSmallerLayoutContainer = ({select_serie}:smaller) => {
         setSelect("episode");
     };
 
+    if (typeof window === undefined) return <h1></h1>
+
     return <div className={styles[`container_${select_serie}`]}>
         <NavButtonsLayout select={select} setSelect={setSelect} class_select={select_serie} />
         <div className={styles.items_container}>

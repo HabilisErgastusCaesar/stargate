@@ -1,9 +1,10 @@
 import styles from './episode.module.css'
-import { DialingScreen } from '../../components/items/dialingScreen';
 import { useStargateContext } from '../../Context/episodeContext';
 import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling';
+import { DialingScreenContainer } from '../dialingScreenContainer/dialingScreenContainer';
+import { setEpisodeNumber } from '../../sharedFunc/adjustShowNumber/setEpisodeNumber';
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { usePathname } from "next/navigation";
 
 type episode = {
@@ -21,10 +22,17 @@ export const Episode = ({class_select}:episode) => {
         )
     }
     const { selection, setSelection }:any = useStargateContext();
+    if (typeof window === undefined) return <h1></h1>
     const [ showItems, setShowItems ] = useState<HTMLElement[]>([]) ?? [];
     const getItems = [...selection(class_select,`Season${number}`)];
     const headContainer = useRef<HTMLDivElement>(null);
-    const numberAdd = 3;
+    const [ windowSize, setWindowSize ] = useState({
+        small: false,
+        medium: false,
+        big: false
+    });
+    const numberAdd = setEpisodeNumber(windowSize, setWindowSize, "add");
+    const selectType = "Episode";
     
     const getData = () => {
         const fetchData = async() => {
@@ -50,7 +58,7 @@ export const Episode = ({class_select}:episode) => {
                 return {...newData};
             });
             if (window.innerWidth < 1500) {
-                setShowItems([...item.slice(0,3)]);
+                setShowItems([...item.slice(0,numberAdd)]);
                 getItems.push(...item);
             } else {
                 setShowItems([...item]);
@@ -69,7 +77,10 @@ export const Episode = ({class_select}:episode) => {
         }
     };
 
-    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd});
+    infiniteScrolling({
+        showItems, getItems, setShowItems, 
+        headContainer, numberAdd, selectType
+    });
     
 
     return<div className={styles[`container_${class_select}`]}
@@ -80,9 +91,9 @@ export const Episode = ({class_select}:episode) => {
                 <h3>season {number}</h3>
             </section>
         <div className={styles.grid_container}>
-            {class_select === "sgOne" && <span className={styles.dial_container}>
-                <DialingScreen />
-            </span>}
+            {class_select === "sgOne" && <span>
+                    <DialingScreenContainer />
+                </span>}
             {showItems.map((item: any, index) => {
                 return <div key={item.id} className={styles.item}>
                     <h4>E{index + 1} {item.name}</h4>

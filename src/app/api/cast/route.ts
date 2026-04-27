@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import castData from '@/app/data/stargateCast.json' assert { type: "json" };
+import castData from '@/app/data/stargateCast.json' with { type: "json" };
 
 type castItem = {
     numberOfEpisodesSgOne: number ;

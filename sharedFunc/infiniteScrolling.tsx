@@ -1,16 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { setEpisodeNumber } from "./adjustShowNumber/setEpisodeNumber";
+import { setCastNumber } from "./adjustShowNumber/setCastNumber";
 
 type scroll = {
     showItems: any;
     getItems: any;
     setShowItems: React.Dispatch<React.SetStateAction<any>>;
     headContainer: any;
-    numberAdd: number;
+    numberAdd: number | undefined | null;
+    selectType: string;
 }
 
 export const infiniteScrolling = ({
-    showItems, getItems, setShowItems, headContainer, numberAdd
+    showItems, getItems, setShowItems, headContainer, numberAdd, selectType
 }:scroll) => {
+    const [ windowSize, setWindowSize ] = useState({
+        small: false,
+        medium: false,
+        big: false
+    });
+
+
     const throttle = (func: Function, limit: number) => {
         let lastFunc: any;
         let lastRan: number | null = null;
@@ -32,10 +43,50 @@ export const infiniteScrolling = ({
         };
     }
 
-    const pushNewEpisodes = () => {
+    const pushNewEpisodes = (type: string) => {
         const length = showItems.length;
-        const adding = getItems.slice(0, length + numberAdd);
-        setShowItems([...adding]);
+        const add = () => {
+            console.log(numberAdd)
+            const setSelectType = () => {
+                if (selectType === "Episode") {
+                    return setEpisodeNumber(windowSize, setWindowSize, "add");
+                } else if (selectType === "Cast") {
+                    return setCastNumber();
+                } else if (selectType === "Info") {
+
+                };
+            }
+            
+            const newNumber = setSelectType();
+
+            const adding = getItems.slice(0, length + newNumber);
+            setShowItems([...adding]);
+        }
+
+        const adjust = () => {
+            const setSelectType = () => {
+                if (selectType === "Episode") {
+                    return setEpisodeNumber(windowSize, setWindowSize, "adjust");
+                } else if (selectType === "Cast") {
+                    return setCastNumber();
+                } else if (selectType === "Info") {
+
+                };
+            }
+            
+            const newNumber = setSelectType();
+
+            if (showItems.length !== newNumber && newNumber !== null) {
+                const adding = getItems.slice(0, newNumber);
+                setShowItems([...adding]);
+            }
+        }
+        
+        if (type === "add") {
+            add();
+        } else if (type === "adjust") {
+            adjust();
+        }
     }
 
     useEffect(() => {
@@ -52,15 +103,22 @@ export const infiniteScrolling = ({
 
             if (scrollTop >= scrollableHeight - 200) {
                 if (showItems.length < getItems.length) {
-                    pushNewEpisodes();
+                    pushNewEpisodes("add");
                 };
             };
         }, 400);
 
+        const seizing =  throttle(() => {
+            pushNewEpisodes("adjust");
+        }, 400);
+
         element.addEventListener("scroll", scrolling);
+        window.addEventListener("resize", seizing);
         
         return () => {
             element.removeEventListener("scroll", scrolling);
+            element.removeEventListener("resize", seizing);
         };
-    }, [showItems]);
+    }, [showItems, window]);
+
 }

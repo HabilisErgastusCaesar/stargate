@@ -94,3 +94,14 @@
     background-color: rgba(251, 255, 0, 0.5);
     border: 2px solid lightblue;
 }
+
+@media screen and (min-width: 600px) {
+    .inactive_sgOne,
+    .active_sgOne,
+    .inactive_atlantis,
+    .active_atlantis,
+    .inactive_universe,
+    .active_universe {
+        width: 35%;
+    }
+}

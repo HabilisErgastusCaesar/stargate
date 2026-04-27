@@ -4,7 +4,7 @@ import { getInfoSgOneData } from '../../sharedFunc/infoData/getInfoSgOneData'
 import { getInfoAtlantisData } from '../../sharedFunc/infoData/getInfoAtlantisData'
 import { getInfoUniverseData } from '../../sharedFunc/infoData/getInfoUniverseData'
 import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling'
-import { DialingScreen } from '../../components/items/dialingScreen'
+import { DialingScreenContainer } from '../dialingScreenContainer/dialingScreenContainer'
 
 import { useRef, useState, useEffect } from 'react'
 
@@ -24,6 +24,7 @@ export const Info = ({class_select}:info) => {
     const [ showItems, setShowItems ] = useState<show[] | undefined>([]);
     const [ getItems, setGetItems ] = useState<any>([]);
     const numberAdd = 2;
+    const selectType = "Info";
 
     const getSgOneData = (selection:number | string) => {
         setShowItems(getInfoSgOneData(selection));
@@ -104,13 +105,11 @@ export const Info = ({class_select}:info) => {
         }
     }, [getItems]);
 
-    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd});
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd, selectType});
 
     return<div className={styles[`container_${class_select}`]}
     ref={headContainer}>
-        {class_select === "sgOne" && <span className={styles.dial_container}>
-            <DialingScreen />
-        </span>}
+        {class_select === "sgOne" && <DialingScreenContainer />}
         {showItems?.map((item, index) => {
             return <section key={index}>
                 {item.title !== "" && <h3>{item.title}</h3>}

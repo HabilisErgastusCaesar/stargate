@@ -4,7 +4,8 @@ import { useCastContext } from '../../Context/castContext'
 import { CastNumber } from '../../components/button/castNumber'
 import { ShowNumberEpisodes } from '../showNumberEpisodes/showNumberEpisodes'
 import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling'
-import { DialingScreen } from '../../components/items/dialingScreen'
+import { DialingScreenContainer } from '../dialingScreenContainer/dialingScreenContainer'
+import { setCastNumber } from '../../sharedFunc/adjustShowNumber/setCastNumber'
 
 import { useState, useRef } from 'react'
 
@@ -50,8 +51,9 @@ export const Cast = ({class_select}:cast) => {
     const [ getItems, setGetItems ] = useState([...selection(class_select)]) ?? [];
     const [ showItems, setShowItems ] = useState<item[]>([]);
     const [ open, setOpen ] = useState("");
-    const numberAdd = 3;
-
+    const numberAdd = setCastNumber();
+    const selectType = "Cast";
+    
     const getData = () => {
         const fetchData = async() => {
             const data = await fetch(`/api/cast?data=${encodeURIComponent(class_select)}`,{
@@ -76,23 +78,21 @@ export const Cast = ({class_select}:cast) => {
                 }
                 return [...newData];
             })
-            setShowItems([...item.slice(0, 3)]);
+            setShowItems([...item.slice(0, numberAdd)]);
         })
     }
 
     if (getItems.length === 0) {
         getData();
     } else if (showItems.length === 0) {
-        setShowItems([...getItems.slice(0, 3)]);
+        setShowItems([...getItems.slice(0, numberAdd)]);
     }
 
-    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd});
+    infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd, selectType});
 
     return<div className={styles[`container_${class_select}`]}
     ref={headContainer}>
-        {class_select === "sgOne" && <span className={styles.dial_container}>
-            <DialingScreen />
-        </span>}
+        {class_select === "sgOne" && <DialingScreenContainer />}
         <section className={styles.items_container}>
         {open !== "" && <ShowNumberEpisodes class_select={class_select} open={open} setOpen={setOpen} />}
         {showItems.map((item: item) => {
