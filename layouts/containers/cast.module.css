@@ -87,6 +87,12 @@
 }
 
 @media screen and (min-width: 1200px) {
+    .container_sgOne,
+    .container_atlantis,
+    .container_universe {
+        height: fit-content;
+    }
+    
     .container_sgOne .items_container,
     .container_atlantis .items_container,
     .container_univers .items_container {

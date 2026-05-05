@@ -3,14 +3,22 @@
     flex-direction: column;
     position: absolute;
     content: "";
-    top: 5dvh;
+    top: 10dvh;
     left: 0;
     right: 0;
     bottom: 0;
     height: 90dvh;
     backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
 .container .close {
     flex: 1;
+}
+
+@media screen and (min-width: 1300px) {
+    .container {
+        top: 5dvh;
+        height: 95dvh;
+    }
 }

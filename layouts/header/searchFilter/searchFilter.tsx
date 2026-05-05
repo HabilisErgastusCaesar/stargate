@@ -16,7 +16,7 @@ export const SearchFilter = ({popup, setPopup}:searchFilter) => {
             <SearchFilterButton selection={popup.class} setOptions={setPopup} />
             <SearchFilterInput selection={popup.class} setOpen={setPopup}/>
         </span>
-        {popup.searchState.open && !popup.options.open && <SearchResults />}
+        {popup.searchState.open && !popup.options.open && <SearchResults setPopup={setPopup}/>}
         {popup.options.open && <OptionsWindow/>}
     </div>
 }

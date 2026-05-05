@@ -1,8 +1,17 @@
 import styles from './searchResults.module.css'
 
-export const SearchResults = () => {
+type search = {
+    setPopup: React.Dispatch<React.SetStateAction<any>>
+}
+
+export const SearchResults = ({setPopup}:search) => {
     const setClose = () => {
-        console.log("trigger");
+        setPopup((prev:any) => ({
+            ...prev,
+            searchState: {
+            open: false,
+            searchResults: "",
+        }}));
 
     };
     return <div className={styles.container}>

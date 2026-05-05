@@ -91,7 +91,7 @@ export const Cast = ({class_select}:cast) => {
     infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd, selectType});
 
     return<div className={styles[`container_${class_select}`]}
-    ref={headContainer}>
+    ref={headContainer} id="castContainer">
         {class_select === "sgOne" && <DialingScreenContainer />}
         <section className={styles.items_container}>
         {open !== "" && <ShowNumberEpisodes class_select={class_select} open={open} setOpen={setOpen} />}

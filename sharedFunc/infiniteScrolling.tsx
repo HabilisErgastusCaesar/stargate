@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { setEpisodeNumber } from "./adjustShowNumber/setEpisodeNumber";
 import { setCastNumber } from "./adjustShowNumber/setCastNumber";
@@ -15,13 +15,7 @@ type scroll = {
 export const infiniteScrolling = ({
     showItems, getItems, setShowItems, headContainer, numberAdd, selectType
 }:scroll) => {
-    const [ windowSize, setWindowSize ] = useState({
-        small: false,
-        medium: false,
-        big: false
-    });
-
-
+    if (typeof window === "undefined") return null;
     const throttle = (func: Function, limit: number) => {
         let lastFunc: any;
         let lastRan: number | null = null;
@@ -49,7 +43,7 @@ export const infiniteScrolling = ({
             console.log(numberAdd)
             const setSelectType = () => {
                 if (selectType === "Episode") {
-                    return setEpisodeNumber(windowSize, setWindowSize, "add");
+                    return setEpisodeNumber();
                 } else if (selectType === "Cast") {
                     return setCastNumber();
                 } else if (selectType === "Info") {
@@ -66,7 +60,7 @@ export const infiniteScrolling = ({
         const adjust = () => {
             const setSelectType = () => {
                 if (selectType === "Episode") {
-                    return setEpisodeNumber(windowSize, setWindowSize, "adjust");
+                    return setEpisodeNumber();
                 } else if (selectType === "Cast") {
                     return setCastNumber();
                 } else if (selectType === "Info") {

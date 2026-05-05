@@ -1,6 +1,5 @@
 import styles from './optionsWindow.module.css';
 
-import { OptionCheckBox } from '../../../../components/input/optionCheckBox';
 import { DialingScreen } from '../../../../components/items/dialingScreen';
 import { RadioButtons } from '../../../../components/radioButtons/radioButtons';
 

@@ -108,7 +108,7 @@ export const Info = ({class_select}:info) => {
     infiniteScrolling({showItems, getItems, setShowItems, headContainer, numberAdd, selectType});
 
     return<div className={styles[`container_${class_select}`]}
-    ref={headContainer}>
+        ref={headContainer} id="infoContainer">
         {class_select === "sgOne" && <DialingScreenContainer />}
         {showItems?.map((item, index) => {
             return <section key={index}>

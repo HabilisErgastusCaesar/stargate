@@ -4,7 +4,7 @@ import { infiniteScrolling } from '../../sharedFunc/infiniteScrolling';
 import { DialingScreenContainer } from '../dialingScreenContainer/dialingScreenContainer';
 import { setEpisodeNumber } from '../../sharedFunc/adjustShowNumber/setEpisodeNumber';
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { usePathname } from "next/navigation";
 
 type episode = {
@@ -26,12 +26,7 @@ export const Episode = ({class_select}:episode) => {
     const [ showItems, setShowItems ] = useState<HTMLElement[]>([]) ?? [];
     const getItems = [...selection(class_select,`Season${number}`)];
     const headContainer = useRef<HTMLDivElement>(null);
-    const [ windowSize, setWindowSize ] = useState({
-        small: false,
-        medium: false,
-        big: false
-    });
-    const numberAdd = setEpisodeNumber(windowSize, setWindowSize, "add");
+    const numberAdd = setEpisodeNumber();
     const selectType = "Episode";
     
     const getData = () => {
@@ -84,7 +79,7 @@ export const Episode = ({class_select}:episode) => {
     
 
     return<div className={styles[`container_${class_select}`]}
-    ref={headContainer}>
+    ref={headContainer} id="episodeContainer">
         <div className={styles.items_container}>
             <section className={styles.header}> 
                 <h3>stargate {class_select.replace("sgOne","sg-1")}</h3>
